@@ -4,7 +4,7 @@ A team task management web app where admins create projects, manage members, ass
 
 ## Live URL
 
-> _Add your Railway deployment URL here after deploying._
+https://task-manager-xwlv.vercel.app/
 
 ## Tech Stack
 
