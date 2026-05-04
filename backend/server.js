@@ -31,11 +31,16 @@ app.get("/api/health", (req, res) => {
   res.status(200).json({ status: "ok", timestamp: new Date().toISOString() });
 });
 
-app.use("/api/auth", authRoutes);
-app.use("/api/users", userRoutes);
-app.use("/api/projects", projectRoutes);
-app.use("/api/tasks", taskRoutes);
-app.use("/api/activity", activityRoutes);
+// Group API routes to mount them on both /api and / (foolproof for Vercel env vars)
+const apiRouter = express.Router();
+apiRouter.use("/auth", authRoutes);
+apiRouter.use("/users", userRoutes);
+apiRouter.use("/projects", projectRoutes);
+apiRouter.use("/tasks", taskRoutes);
+apiRouter.use("/activity", activityRoutes);
+
+app.use("/api", apiRouter);
+app.use("/", apiRouter);
 
 app.use((req, res) => {
   res.status(404).json({ error: { message: "Route not found", code: "NOT_FOUND" } });
