@@ -211,7 +211,7 @@ const ProjectDetail = () => {
                     <p className="text-sm text-text-primary">{member.displayName}</p>
                     <p className="text-xs text-text-tertiary">{member.email}</p>
                   </div>
-                  {isAdmin && !project.createdBy._id !== member._id && member._id !== project.createdBy._id && (
+                  {isAdmin && member._id !== project.createdBy._id && (
                     <button onClick={() => handleRemoveMember(member._id)}
                       className="text-text-tertiary hover:text-danger transition-colors" id={`remove-member-${member._id}`}>
                       <UserMinusIcon className="w-4 h-4" />
